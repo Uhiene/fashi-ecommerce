@@ -16,7 +16,7 @@ type Product = {
     
     women: [
       {
-        name: "T-Shirt",
+        name: "Yellow Shirt",
         category: "Clothing",
         image: "/images/products/women/women-1.jpg",
         price: "$50",
@@ -25,8 +25,8 @@ type Product = {
         size: "M",
       },
       {
-        name: "Handbag",
-        category: "Accessories",
+        name: "Grey Shirt",
+        category: "Clothing",
         image: "/images/products/women/women-2.jpg",
         price: "$80",
         brand: "Adidas",
@@ -34,8 +34,8 @@ type Product = {
         size: "L",
       },
       {
-        name: "Clothing",
-        category: "Accessories",
+        name: "Grey Cardigan",
+        category: "Clothing",
         image: "/images/products/women/women-3.jpg",
         price: "$80",
         brand: "Adidas",
@@ -43,17 +43,17 @@ type Product = {
         size: "L",
       },
       {
-        name: "Clothing",
+        name: "HandBag",
         category: "Accessories",
         image: "/images/products/women/women-4.jpg",
-        price: "$80",
+        price: "$35",
         brand: "Adidas",
         color: "Blue",
         size: "L",
       },
       {
-        name: "Clothing",
-        category: "Accessories",
+        name: "Yellow Cardigan",
+        category: "Clothing",
         image: "/images/products/women/women-5.jpg",
         price: "$80",
         brand: "Adidas",

@@ -1,9 +1,11 @@
 "use client";
 import React, { useState } from "react";
-import { productsData } from "../components/utils/productsData"; // Import data from the utils folder
+import { productsData } from "../components/utils/productsData";
+import ProductCard from "../components/cards/ProductCard";
 
 const CategoryPage = () => {
-  const [selectedCategory, setSelectedCategory] = useState<keyof typeof productsData>("women");
+  const [selectedCategory, setSelectedCategory] =
+    useState<keyof typeof productsData>("women");
   const [selectedBrands, setSelectedBrands] = useState<string[]>([]);
   const [priceRange, setPriceRange] = useState<number>(50);
   const [selectedColors, setSelectedColors] = useState<string[]>([]);
@@ -37,138 +39,116 @@ const CategoryPage = () => {
     color: string;
     size: string;
   }
-  
+
   const filteredProducts = productsData[selectedCategory];
-  
 
   return (
-    <div className="flex p-4 gap-10">
-      {/* Sidebar */}
-      <div className="w-1/4 bg-gray-100 p-4 rounded-lg">
-        {/* Categories */}
-        <h3 className="font-bold mb-4">Categories</h3>
-        <ul>
-          <li
-            className={`cursor-pointer mb-2 ${selectedCategory === "women" ? "text-blue-500" : ""}`}
-            onClick={() => setSelectedCategory("women")}
-          >
-            Women
-          </li>
-          <li
-            className={`cursor-pointer mb-2 ${selectedCategory === "men" ? "text-blue-500" : ""}`}
-            onClick={() => setSelectedCategory("men")}
-          >
-            Men
-          </li>
-        </ul>
+    <div className="flex justify-center pb-20">
+      <div className="flex flex-col-reverse lg:flex-row gap-10 mt-6 lg:mt-14 w-full lg:w-[76%]">
+        {/* Sidebar */}
+        <div className="lg:w-1/4 p-4 gap-10 grid grid-cols-2 lg:grid-cols-1 h-fit">
+          {/* Categories */}
+          <div>
+            <h3 className="font-medium text-xl lg:text-2xl mb-2">Categories</h3>
+            <ul>
+              {(["women", "men"] as const).map((category) => (
+                <li
+                  key={category}
+                  className={`cursor-pointer mb-2 text-gray-600 ${
+                    selectedCategory === category ? "text-yellow-500" : ""
+                  }`}
+                  onClick={() => setSelectedCategory(category)}
+                >
+                  {category.charAt(0).toUpperCase() + category.slice(1)}
+                </li>
+              ))}
+            </ul>
+          </div>
 
-        {/* Brands */}
-        <h3 className="font-bold mb-4">Brands</h3>
-        <div>
-          <label>
-            <input
-              type="checkbox"
-              onChange={() => toggleBrand("Nike")}
-              checked={selectedBrands.includes("Nike")}
-            />
-            Nike
-          </label>
-          <br />
-          <label>
-            <input
-              type="checkbox"
-              onChange={() => toggleBrand("Adidas")}
-              checked={selectedBrands.includes("Adidas")}
-            />
-            Adidas
-          </label>
-          <br />
-          <label>
-            <input
-              type="checkbox"
-              onChange={() => toggleBrand("Puma")}
-              checked={selectedBrands.includes("Puma")}
-            />
-            Puma
-          </label>
-        </div>
-
-        {/* Price Range */}
-        <h3 className="font-bold mb-4">Price</h3>
-        <input
-          type="range"
-          min="0"
-          max="200"
-          value={priceRange}
-          onChange={(e) => setPriceRange(Number(e.target.value))}
-          className="w-full"
-        />
-        <p>Max Price: ${priceRange}</p>
-
-        {/* Colors */}
-        <h3 className="font-bold mb-4">Colors</h3>
-        <div>
-          <label>
-            <input
-              type="checkbox"
-              onChange={() => toggleColor("Red")}
-              checked={selectedColors.includes("Red")}
-            />
-            <span className="inline-block w-4 h-4 bg-red-500 rounded-full"></span> Red
-          </label>
-          <br />
-          <label>
-            <input
-              type="checkbox"
-              onChange={() => toggleColor("Blue")}
-              checked={selectedColors.includes("Blue")}
-            />
-            <span className="inline-block w-4 h-4 bg-blue-500 rounded-full"></span> Blue
-          </label>
-        </div>
-
-        {/* Sizes */}
-        <h3 className="font-bold mb-4">Sizes</h3>
-        <div>
-          <button
-            className={`p-2 rounded ${selectedSize === "S" ? "bg-blue-500 text-white" : "bg-gray-200"}`}
-            onClick={() => handleSizeChange("S")}
-          >
-            S
-          </button>
-          <button
-            className={`p-2 rounded ${selectedSize === "M" ? "bg-blue-500 text-white" : "bg-gray-200"}`}
-            onClick={() => handleSizeChange("M")}
-          >
-            M
-          </button>
-          <button
-            className={`p-2 rounded ${selectedSize === "L" ? "bg-blue-500 text-white" : "bg-gray-200"}`}
-            onClick={() => handleSizeChange("L")}
-          >
-            L
-          </button>
-        </div>
-      </div>
-
-      {/* Product Cards */}
-      <div className="w-3/4 p-4">
-        <h2 className="text-3xl font-bold mb-6 capitalize">{selectedCategory} Items</h2>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-        {filteredProducts.map((product: Product, index: number) => (
-            <div className="category-card max-w-sm rounded-lg shadow-lg overflow-hidden" key={index}>
-              <img
-                src={product.image}
-                alt={product.name}
-                className="w-full h-60 object-cover rounded-lg"
-              />
-              <div className="text-center mt-4 px-4">
-                <h3 className="text-xl font-semibold">{product.name}</h3>
-                <p className="text-sm text-gray-500">{product.category}</p>
-                <p className="text-2xl text-gold">{product.price}</p>
-              </div>
+          {/* Brands */}
+          <div>
+            <h3 className="font-medium text-xl lg:text-2xl mb-2">Brands</h3>
+            <div className="space-y-2">
+              {["Nike", "Adidas", "Puma"].map((brand) => (
+                <label key={brand} className="flex items-center space-x-2">
+                  <input
+                    type="checkbox"
+                    onChange={() => toggleBrand(brand)}
+                    checked={selectedBrands.includes(brand)}
+                  />
+                  <span className="text-gray-600 ">{brand}</span>
+                </label>
+              ))}
             </div>
-          ))}
+          </div>
+
+          {/* Price Range */}
+          <div>
+            <h3 className="font-medium text-xl lg:text-2xl mb-2">Price</h3>
+            <input
+              type="range"
+              min="0"
+              max="200"
+              value={priceRange}
+              onChange={(e) => setPriceRange(Number(e.target.value))}
+              className="w-full bg-yellow-400"
+            />
+            <p className="border border-gray-400 w-fit px-3">${priceRange}</p>
+          </div>
+
+          {/* Colors */}
+          <div>
+            <h3 className="font-medium text-xl lg:text-2xl mb-2">Colors</h3>
+            <div>
+              {["Red", "Blue"].map((color) => (
+                <label key={color} className="flex items-center space-x-2">
+                  <input
+                    type="checkbox"
+                    onChange={() => toggleColor(color)}
+                    checked={selectedColors.includes(color)}
+                    className="mr-2"
+                  />
+                  <span
+                    className={`inline-block w-4 h-4 rounded-full ${
+                      color === "Red" ? "bg-red-500" : "bg-blue-500"
+                    }`}
+                  ></span>
+                  <span>{color}</span>
+                </label>
+              ))}
+            </div>
+          </div>
+
+          {/* Sizes */}
+          <div >
+            <h3 className="font-medium text-xl lg:text-2xl mb-2">Sizes</h3>
+            <div className="space-x-2">
+              {["S", "M", "L", "XS"].map((size) => (
+                <button
+                  key={size}
+                  className={`p-2 lg:px-4 border rounded ${
+                    selectedSize === size ? "bg-black text-white" : "bg-white"
+                  }`}
+                  onClick={() => handleSizeChange(size)}
+                >
+                  {size}
+                </button>
+              ))}
+            </div>
+          </div>
+        </div>
+        {/* Product Cards */}
+        <div className="w-full lg:w-3/4 p-4">
+          <h2 className="text-3xl font-bold mb-6 capitalize">
+            {selectedCategory} Items
+          </h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10">
+            {filteredProducts.map((product: Product, index: number) => (
+              <div key={index}>
+                <ProductCard product={product} />
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </div>

@@ -14,15 +14,15 @@ interface CardProps {
 
 const ProductCard: React.FC<CardProps> = ({ product }) => {
   return (
-    <div className="category-card max-w-sm rounded-lg shadow-lg overflow-hidden">
+    <div className="w-full lg:w-60 overflow-hidden">
       <img
         src={product.image}
         alt={product.name}
-        className="w-full h-60 object-cover rounded-lg"
+        className="w-full h-72 object-cover"
       />
       <div className="text-center mt-4 px-4">
-        <h3 className="text-xl font-semibold">{product.name}</h3>
-        <p className="text-sm text-gray-500">{product.category}</p>
+        <h3 className="text-xs text-gray-400 tracking-widest uppercase font-light">{product.category}</h3>
+        <p className="text-2xl text-gray-800">{product.name}</p>
         <p className="text-2xl text-gold">{product.price}</p>
       </div>
     </div>

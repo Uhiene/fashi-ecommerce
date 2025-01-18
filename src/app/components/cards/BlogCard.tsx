@@ -1,5 +1,5 @@
 import React from "react";
-import { FaCalendarAlt, FaComment } from "react-icons/fa";
+import { FaCalendarAlt, FaComment, FaRegCalendar, FaRegComment } from "react-icons/fa";
 
 interface BlogCardProps {
   image: string;
@@ -11,23 +11,25 @@ interface BlogCardProps {
 
 const BlogCard: React.FC<BlogCardProps> = ({ image, date, comments, title, description }) => {
   return (
-    <div className="bg-white rounded-lg shadow-md overflow-hidden">
+    <div className="overflow-hidden">
       <img
         src={image}
         alt={`Blog post titled "${title}"`}
-        className="w-full h-48 object-cover"
+        className="w-full h-56 object-cover"
       />
       <div className="p-4">
-        <div className="flex items-center text-sm text-gray-600 mb-2">
-          <FaCalendarAlt className="mr-2" />
+        <div className="flex items-center gap-6 mb-4">
+        <div className="flex items-center gap-2 text-sm text-gray-600 font-light">
+        <FaRegCalendar className="text-gold"/>
           <span>{date}</span>
         </div>
-        <div className="flex items-center text-sm text-gray-600 mb-4">
-          <FaComment className="mr-2" />
-          <span>{comments} Comments</span>
+        <div className="flex items-center gap-2 text-sm text-gray-600 font-light">
+        <FaRegComment className="text-gold"/>
+          <span>{comments}</span>
         </div>
-        <h3 className="text-xl font-semibold text-gray-800 mb-2">{title}</h3>
-        <p className="text-gray-700">{description}</p>
+        </div>
+        <h3 className="text-2xl font-semibold text-gray-800 mb-2">{title}</h3>
+        <p className="text-gray-700 font-light text-sm">{description}</p>
       </div>
     </div>
   );
