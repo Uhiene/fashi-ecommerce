@@ -3,14 +3,16 @@ import React, { useState } from "react";
 import DropdownMenu from "../reuseableComponent/DropdownMenu";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { IoMdMenu } from "react-icons/io";
 
 const Navbar = () => {
-  const [isMenuOpen, setIsMenuOpen] = useState(false); // State to manage mobile menu
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
   const pathname = usePathname();
   const dropdownItems = [
-    { text: "Profile" },
-    { text: "Settings" },
-    { text: "Logout" },
+    { text: "Shopping Cart", path: "/cart" },
+    { text: "Checkout", path: "/checkout" },
+    { text: "Register", path: "/register" },
+    { text: "Login", path: "/login" },
   ];
 
   const navLinks = [
@@ -18,55 +20,50 @@ const Navbar = () => {
     { path: "/collection", text: "Collection" },
     { path: "/blog", text: "Blog" },
     { path: "/contact", text: "Contact" },
-    { path: "/services", text: "Pages" },
   ];
 
   const isActive = (path: string) => pathname === path;
 
+  const handleLinkClick = () => {
+    setIsMenuOpen(false);
+  };
+
   return (
-    <nav className="bg-gray-800 flex items-center justify-end lg:justify-center ">
-      {/* Top Section */}
+    <nav className="lg:bg-darkGray flex items-center justify-end lg:justify-center">
       <div className="hidden lg:block">
         <DropdownMenu label="All Departments" items={dropdownItems} />
-        </div>
-        {/* Hamburger Icon for Mobile */}
-        <button
-          onClick={() => setIsMenuOpen(!isMenuOpen)}
-          className="lg:hidden block text-white hover:text-gray-400"
-        >
-          <svg
-            className="w-6 h-6"
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M4 6h16M4 12h16m-7 6h7"
-            />
-          </svg>
-        </button>
+      </div>
 
-      {/* Links Section */}
+      <button
+        onClick={() => setIsMenuOpen(!isMenuOpen)}
+        className="lg:hidden flex gap-2 text-daryGray hover:text-gold"
+      >
+        <IoMdMenu className="text-2xl" />
+      </button>
+
       <div
-         className={`flex ${
-          isMenuOpen ? "absolute bg-gray-800 left-0 w-full flex-col top-32 p-2" : "hidden sm:flex"
+        className={`flex ${
+          isMenuOpen
+            ? "absolute bg-darkGray left-0 w-full flex-col top-32 p-2 z-50"
+            : "hidden sm:flex"
         } items-center justify-center`}
       >
         {navLinks.map(({ path, text }) => (
           <Link
             key={path}
             href={path}
+            onClick={handleLinkClick} 
             className={`${
               isActive(path) ? "bg-gold" : ""
-            } text-white hover:text-gray-400 p-4 border-b border-gray-700 lg:border-none w-full h-full lg:w-40 text-center`}
+            } text-white p-4 border-b border-gray-500 w-full h-full lg:w-40 text-center lg:border-r `}
           >
             {text}
           </Link>
         ))}
+        <DropdownMenu
+          label="Pages"
+          items={dropdownItems}
+        />
       </div>
     </nav>
   );

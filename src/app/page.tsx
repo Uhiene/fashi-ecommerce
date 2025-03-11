@@ -7,14 +7,6 @@ import ImageGrid from "./components/reuseableComponent/ImageGrid";
 import Blog from "./components/home/Blog";
 
 const page = () => {
-  // const images = [
-  //   "/images/instagram/insta-1.jpg",
-  //   "/images/instagram/insta-2.jpg",
-  //   "/images/instagram/insta-3.jpg",
-  //   "/images/instagram/insta-4.jpg",
-  //   "/images/instagram/insta-5.jpg",
-  //   "/images/instagram/insta-6.jpg",
-  // ];
   return (
     <div className="">
       <HeroSwiper />

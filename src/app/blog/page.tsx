@@ -7,33 +7,33 @@ const BlogsPage = () => {
   return (
     <div className="flex justify-center pb-20">
       <div className="flex flex-col-reverse lg:flex-row gap-10 mt-6 lg:mt-14 w-full lg:w-[76%]">
-        <aside className="lg:w-1/4 bg-slate-100 p-4 gap-10 grid grid-cols-2 lg:grid-cols-1 h-fit">
-          <div className="border h-fit">
+        <aside className="lg:w-1/4 p-4 gap-10 grid grid-cols-2 lg:grid-cols-1 h-fit">
+          <div>
             <input
               type="text"
               placeholder="Search blogs..."
               className="w-full p-2 border rounded-lg"
             />
           </div>
-          <div className="border h-fit">
+          <div>
             <h3 className="font-medium text-xl lg:text-2xl mb-2">Categories</h3>
             <ul className="space-y-2">
-              <li className="cursor-pointer hover:text-yellow-500">Fashion</li>
-              <li className="cursor-pointer hover:text-yellow-500">Modeling</li>
-              <li className="cursor-pointer hover:text-yellow-500">Travel</li>
+              <li className="cursor-pointer text-gray-600 hover:text-yellow-500">Fashion</li>
+              <li className="cursor-pointer text-gray-600 hover:text-yellow-500">Modeling</li>
+              <li className="cursor-pointer text-gray-600 hover:text-yellow-500">Travel</li>
             </ul>
           </div>
-          <div className="border">
+          <div>
             <h3 className="font-medium text-xl lg:text-2xl mb-2">Recent Posts</h3>
             <ul>
               {blogData.map((card, index) => (
-                <li key={index} className="flex items-center mb-4">
+                <li key={index} className="flex items-center gap-4 mb-4">
                   <img
                     src={card.image}
                     alt={card.title}
-                    className="w-12 h-12 object-cover rounded-lg mr-4"
+                    className="w-12 h-12 object-cover"
                   />
-                  <p className="text-sm">{card.title}</p>
+                  <p className="text-sm font-bold">{card.title}</p>
                 </li>
               ))}
             </ul>
@@ -46,7 +46,7 @@ const BlogsPage = () => {
                 (tag, index) => (
                   <span
                     key={index}
-                    className="bg-gray-200 px-2 py-1 text-sm rounded-lg cursor-pointer hover:bg-gray-300"
+                    className="border border-gray-200 px-2 py-1 text-sm cursor-pointer"
                   >
                     {tag}
                   </span>

@@ -3,13 +3,13 @@ import React, { useState } from "react";
 import Button from "../components/reuseableComponent/Button";
 import Link from "next/link";
 
-const LoginPage: React.FC = () => {
+const RegisterPage: React.FC = () => {
   const [formData, setFormData] = useState({
+    fullName: "",
     email: "",
     password: "",
+    confirmPassword: "",
   });
-
-  const [savePassword, setSavePassword] = useState(false);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -18,15 +18,27 @@ const LoginPage: React.FC = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    console.log("Login Details:", formData);
-    alert("Login successful!");
+    if (formData.password !== formData.confirmPassword) {
+      alert("Passwords do not match!");
+      return;
+    }
+    console.log("Registered User Details:", formData);
+    alert("Registration successful!");
   };
 
   return (
     <div className="min-h-screen flex justify-center p-4">
       <div className="bg-white p-6 w-full max-w-xl text-center">
-        <h1 className="text-3xl font-bold mb-6">Login</h1>
+        <h1 className="text-3xl font-bold mb-6">Register</h1>
         <form onSubmit={handleSubmit} className="space-y-4">
+          <input
+            type="text"
+            name="fullName"
+            placeholder="Full Name"
+            className="w-full border border-gray-300 p-3"
+            value={formData.fullName}
+            onChange={handleChange}
+          />
           <input
             type="email"
             name="email"
@@ -43,30 +55,19 @@ const LoginPage: React.FC = () => {
             value={formData.password}
             onChange={handleChange}
           />
-           <div className="flex items-center justify-between text-sm text-gray-600">
-            <label className="flex items-center gap-2">
-              <input
-                type="checkbox"
-                checked={savePassword}
-                onChange={(e) => setSavePassword(e.target.checked)}
-                className="form-checkbox"
-              />
-              Save Password
-            </label>
-            <Link href="/forgot-password" className="underline underline-offset-4">
-              Forgot Password?
-            </Link>
-          </div>
+          <input
+            type="password"
+            name="confirmPassword"
+            placeholder="Confirm Password"
+            className="w-full border border-gray-300 p-3"
+            value={formData.confirmPassword}
+            onChange={handleChange}
+          />
           <Button type="submit" className="w-full bg-gold text-white mb-6">
-            Login
+            Register
           </Button>
           <div>
-            <Link
-              href="/login"
-              className="underline underline-offset-4 text-sm text-gray-600"
-            >
-              OR CREATE AN ACCOUNT
-            </Link>
+          <Link href="/login" className="underline underline-offset-4 text-sm text-gray-600">OR LOGIN</Link>
           </div>
         </form>
       </div>
@@ -74,4 +75,4 @@ const LoginPage: React.FC = () => {
   );
 };
 
-export default LoginPage;
+export default RegisterPage;

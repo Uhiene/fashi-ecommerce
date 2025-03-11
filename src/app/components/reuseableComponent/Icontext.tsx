@@ -11,7 +11,7 @@ export default function IconText({ icon, text, className, iconSize = "text-xl" }
   return (
     <div className={`flex items-center space-x-2 text-gray-900 ${className || ""}`}>
       <span className={`${iconSize}`}>{icon}</span> {/* Apply dynamic icon size */}
-      <span className="font-light text-base">{text}</span>
+      <span className="font-light text-sm">{text}</span>
     </div>
   );
 }

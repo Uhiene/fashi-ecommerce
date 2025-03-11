@@ -2,6 +2,8 @@
 import React, { useState } from "react";
 import { productsData } from "../components/utils/productsData";
 import ProductCard from "../components/cards/ProductCard";
+import { ToastContainer } from "react-toastify"; 
+import { useCart } from "../components/cards/CartContext"
 
 const CategoryPage = () => {
   const [selectedCategory, setSelectedCategory] =
@@ -10,6 +12,8 @@ const CategoryPage = () => {
   const [priceRange, setPriceRange] = useState<number>(50);
   const [selectedColors, setSelectedColors] = useState<string[]>([]);
   const [selectedSize, setSelectedSize] = useState<string>("M");
+  const { addToCart } = useCart();
+
 
   // Toggle brand filter
   const toggleBrand = (brand: string) => {
@@ -145,11 +149,12 @@ const CategoryPage = () => {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10">
             {filteredProducts.map((product: Product, index: number) => (
               <div key={index}>
-                <ProductCard product={product} />
+                <ProductCard product={product}   onAddToCart={addToCart} />
               </div>
             ))}
           </div>
         </div>
+        <ToastContainer />
       </div>
     </div>
   );

@@ -1,3 +1,4 @@
+"use client";
 import { IoIosMail } from "react-icons/io";
 import IconText from "../reuseableComponent/Icontext";
 import {
@@ -14,15 +15,21 @@ import Dropdown from "../reuseableComponent/Dropdown";
 import Image from "next/image";
 import IconBadge from "../reuseableComponent/IconBadge";
 import Navbar from "./Navbar";
+import { useState } from "react";
+import CartModal from "../reuseableComponent/CartModal";
+import Link from "next/link";
 
 const Header = () => {
+  const [isCartDropdownOpen, setCartDropdownOpen] = useState(false);
+
+  const toggleDropdown = () => setCartDropdownOpen(!isCartDropdownOpen);
   const dropdownItems = [
     {
-      image: "/images/flag-1.jpg", // Image path from public folder
+      image: "/images/flag-1.jpg",
       text: "Profile",
     },
     {
-      image: "/images/flag-2.jpg", // Image path from public folder
+      image: "/images/flag-2.jpg",
       text: "Settings",
     },
   ];
@@ -55,7 +62,9 @@ const Header = () => {
             <Dropdown label="User Menu" items={dropdownItems} />
           </div>
           <div className="border-r border-gray-300 p-3 w-1/3 lg:w-1/6">
+          <Link href="/login">
             <IconText icon={<FaUser />} text="Login" iconSize="text-md" />
+            </Link>
           </div>
         </div>
       </div>
@@ -71,11 +80,15 @@ const Header = () => {
           <div className="hidden lg:flex gap-4">
             <IconBadge icon={<FaHeart />} count={5} />
 
-            <IconBadge icon={<FaShoppingCart />} count={3} />
+            <div onClick={toggleDropdown} className="cursor-pointer relative">
+          <IconBadge icon={<FaShoppingCart />} count={3} />
+          <CartModal isOpen={isCartDropdownOpen} />
+        </div>
           </div>
+         
         </div>
       </div>
-      <Navbar/>
+      <Navbar />
     </div>
   );
 };

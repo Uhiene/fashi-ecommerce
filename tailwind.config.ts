@@ -11,7 +11,11 @@ export default {
       colors: {
         background: "var(--background)",
         foreground: "var(--foreground)",
-        gold:"#E7AA3C"
+        gradientStart: "#FF5733",
+        gradientMid: "#33FF57",
+        gradientEnd: "#3357FF",
+        gold:"#E7AA3C",
+        darkGray:"#252525",
       },
     },
   },

@@ -1,4 +1,21 @@
+@import url("https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,200..1000;1,200..1000&display=swap");
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
+body {
+  font-family: "Mulish", serif;
+}
+
+@layer utilities {
+  .border-gradient {
+    border-color: transparent;
+    border-left-color: #ff5733;
+    border-top-color: #33ff57;
+  }
+
+  .spinner-gradient {
+    background: conic-gradient(#ff5733, #33ff57, #3357ff, #ff5733);
+  }
+}
