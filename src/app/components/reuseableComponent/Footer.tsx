@@ -14,12 +14,14 @@ const Footer = () => {
     <div>
       <div className="bg-neutral-700 flex justify-between gap-5 sm:gap-10 items-center overflow-x-scroll sm:overflow-x-auto p-4 lg:p-10 lg:px-40 ">
         {images.map((image, index) => (
-          <img
-            key={index}
-            src={image}
-            alt={`Footer Image ${index + 1}`}
-            className="w-20 sm:w-auto"
-          />
+         <Image
+         src={image}
+         alt={`Footer Image ${index + 1}`}
+         key={index}
+         width={100}
+         height={100} 
+         className="object-cover"
+       />
         ))}
       </div>
       <div className="bg-zinc-900 py-14 px-4 lg:p-10 lg:px-40 flex flex-col lg:flex-row justify-between items-start gap-10 sm:gap-0">

@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { toast } from "react-toastify"; // Import toast
 import { Product } from "./CartContext"; // Import Product type
+import Image from "next/image";
 
 interface CardProps {
   product: Product;
@@ -21,9 +22,11 @@ const ProductCard: React.FC<CardProps> = ({ product, onAddToCart }) => {
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
-      <img
+      <Image
         src={product.image}
         alt={product.name}
+        width={600}
+        height={288}
         className="w-full h-72 object-cover"
       />
       {/* Add to Cart Button that appears when image is hovered */}
@@ -36,7 +39,9 @@ const ProductCard: React.FC<CardProps> = ({ product, onAddToCart }) => {
         </button>
       )}
       <div className="text-center mt-4 px-4">
-        <h3 className="text-xs text-gray-400 tracking-widest uppercase font-light">{product.category}</h3>
+        <h3 className="text-xs text-gray-400 tracking-widest uppercase font-light">
+          {product.category}
+        </h3>
         <p className="text-2xl text-gray-800">{product.name}</p>
         <p className="text-2xl text-gold">{product.price}</p>
       </div>

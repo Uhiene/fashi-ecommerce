@@ -1,5 +1,6 @@
 "use client";
 import { motion } from "framer-motion";
+import Image from "next/image";
 
 const images = [
   { src: "/images/banner-1.jpg", alt: "Category 1" },
@@ -12,9 +13,10 @@ const Category = () => {
     <div className="flex flex-col md:flex-row gap-5 p-4 lg:p-20">
       {images.map((image, index) => (
         <div key={index} className="relative group w-full lg:w-1/3">
-          <img
+          <Image
             src={image.src}
             alt={image.alt}
+            layout="fill"
             className="w-full h-full object-cover bg-white"
           />
           <motion.div
@@ -33,7 +35,7 @@ const Category = () => {
               transition: { duration: 0.5 },
             }}
             style={{
-              border: "2px dashed rgba(128, 128, 128, 0.7)", // Light gray dashed border
+              border: "2px dashed rgba(128, 128, 128, 0.7)", 
               width: "100%",
               height: "100%",
             }}

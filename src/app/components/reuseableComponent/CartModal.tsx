@@ -3,6 +3,7 @@ import React from "react";
 import { useCart } from "../cards/CartContext";
 import Button from "./Button";
 import Link from "next/link";
+import Image from "next/image";
 
 interface CartModalProps {
   isOpen: boolean;
@@ -27,11 +28,13 @@ const CartModal: React.FC<CartModalProps> = ({ isOpen }) => {
           <ul className="space-y-4 max-h-60 overflow-auto">
             {cart.map((item, index) => (
               <li key={index} className="flex items-center justify-between">
-                <img
-                  src={item.image}
-                  alt={item.name}
-                  className="w-12 h-12 object-cover rounded-md"
-                />
+               <Image
+      src={item.image}
+      alt={item.name}
+      width={48} 
+      height={48} 
+      className="object-cover rounded-md"
+    />
                 <div className="flex-1 mx-4">
                   <p className="font-medium text-sm">{item.name}</p>
                   <p className="text-xs text-gray-500">

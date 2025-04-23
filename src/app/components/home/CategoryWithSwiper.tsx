@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/navigation";
@@ -101,8 +101,16 @@ const productsData: Products = {
   ],
 };
 
+
+
 const CategoryWithSwiper: React.FC<CategoryWithSwiperProps> = ({ type }) => {
-  const [activeCategory, setActiveCategory] = useState<keyof Products>(type);
+  // const [activeCategory, setActiveCategory] = useState<keyof Products>(type);
+
+  const handleAddToCart = (product: Product) => {
+    // Your logic for adding the product to cart
+    console.log("Adding to cart:", product);
+  };
+  
 
   return (
     <div
@@ -143,7 +151,7 @@ const CategoryWithSwiper: React.FC<CategoryWithSwiperProps> = ({ type }) => {
           {productsData[type].map((product, index) => (
             <SwiperSlide key={index}>
               {/* Render the ProductCard Component */}
-              <ProductCard product={product} />
+              <ProductCard product={product}   onAddToCart={handleAddToCart} />
             </SwiperSlide>
           ))}
         </Swiper>

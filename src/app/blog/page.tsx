@@ -2,6 +2,7 @@
 import React from "react";
 import BlogCard from "../components/cards/BlogCard";
 import { blogData } from "../components/utils/BlogsData";
+import Image from "next/image";
 
 const BlogsPage = () => {
   return (
@@ -18,19 +19,29 @@ const BlogsPage = () => {
           <div>
             <h3 className="font-medium text-xl lg:text-2xl mb-2">Categories</h3>
             <ul className="space-y-2">
-              <li className="cursor-pointer text-gray-600 hover:text-yellow-500">Fashion</li>
-              <li className="cursor-pointer text-gray-600 hover:text-yellow-500">Modeling</li>
-              <li className="cursor-pointer text-gray-600 hover:text-yellow-500">Travel</li>
+              <li className="cursor-pointer text-gray-600 hover:text-yellow-500">
+                Fashion
+              </li>
+              <li className="cursor-pointer text-gray-600 hover:text-yellow-500">
+                Modeling
+              </li>
+              <li className="cursor-pointer text-gray-600 hover:text-yellow-500">
+                Travel
+              </li>
             </ul>
           </div>
           <div>
-            <h3 className="font-medium text-xl lg:text-2xl mb-2">Recent Posts</h3>
+            <h3 className="font-medium text-xl lg:text-2xl mb-2">
+              Recent Posts
+            </h3>
             <ul>
               {blogData.map((card, index) => (
                 <li key={index} className="flex items-center gap-4 mb-4">
-                  <img
+                  <Image
                     src={card.image}
                     alt={card.title}
+                    width={48}
+                    height={48}
                     className="w-12 h-12 object-cover"
                   />
                   <p className="text-sm font-bold">{card.title}</p>
@@ -40,7 +51,9 @@ const BlogsPage = () => {
           </div>
 
           <div>
-            <h3 className="font-medium text-xl lg:text-2xl mb-2">Product Tags</h3>
+            <h3 className="font-medium text-xl lg:text-2xl mb-2">
+              Product Tags
+            </h3>
             <div className="flex flex-wrap gap-2">
               {["Fashion", "Travel", "Lifestyle", "Modeling"].map(
                 (tag, index) => (
@@ -55,7 +68,7 @@ const BlogsPage = () => {
             </div>
           </div>
         </aside>
-        <main  className="w-full flex-1">
+        <main className="w-full flex-1">
           <h1 className="text-3xl font-bold mb-6">Blogs</h1>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
             {blogData.map((card, index) => (

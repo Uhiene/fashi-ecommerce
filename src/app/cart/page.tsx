@@ -3,6 +3,7 @@ import React from "react";
 import { AiOutlineClose } from "react-icons/ai";
 import { useCart } from "../components/cards/CartContext"; // Import useCart
 import Button from "../components/reuseableComponent/Button";
+import Image from "next/image";
 
 const ShoppingCart = () => {
   const { cart, removeFromCart } = useCart(); // Access cart and removeFromCart from context
@@ -41,9 +42,11 @@ const ShoppingCart = () => {
             {cart.map((item, index) => (
               <tr key={index}>
                 <td className="w-40 h-40 p-4">
-                  <img
+                  <Image
                     src={item.image}
                     alt={item.name}
+                    width={160}
+                    height={160}
                     className="w-full h-full object-cover"
                   />
                 </td>
@@ -66,12 +69,8 @@ const ShoppingCart = () => {
         <div className="w-3/4 mt-6 flex justify-end ">
           <div className="p-4 bg-gray-200 w-80 space-y-6">
             <div className="flex justify-between items-center">
-            <h3 className="text-xl font-semibold">
-              Total: 
-            </h3>
-            <span>
-            ${calculateSubtotal()}
-            </span>
+              <h3 className="text-xl font-semibold">Total:</h3>
+              <span>${calculateSubtotal()}</span>
             </div>
             <Button className={`bg-black text-white w-full`}>
               {" "}

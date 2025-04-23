@@ -1,5 +1,4 @@
 import React from "react";
-import { motion } from "framer-motion";
 import { FaInstagram } from "react-icons/fa";
 import Image from "next/image";
 
