@@ -1,14 +1,14 @@
 "use client";
 import React from "react";
 import { AiOutlineClose } from "react-icons/ai";
-import { useCart } from "../components/cards/CartContext"; // Import useCart
 import Button from "../components/reuseableComponent/Button";
 import Image from "next/image";
+import { useCart, Product } from "../components/cards/CartContext";
 
 const ShoppingCart = () => {
   const { cart, removeFromCart } = useCart(); // Access cart and removeFromCart from context
 
-  const handleRemoveItem = (product: any) => {
+  const handleRemoveItem = (product: Product) => {
     removeFromCart(product);
   };
 

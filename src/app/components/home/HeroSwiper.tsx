@@ -1,6 +1,7 @@
 "use client";
 import React, { useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
+import { Swiper as SwiperType } from 'swiper/types';
 import "swiper/css"; 
 import { Navigation, Pagination, Autoplay } from "swiper/modules";
 import { motion } from "framer-motion";
@@ -17,7 +18,7 @@ const HeroSwiper = () => {
   const [slideIndex, setSlideIndex] = useState(0);
 
   
-  const handleSlideChange = (swiper: any) => {
+  const handleSlideChange = (swiper: SwiperType) => {
     setSlideIndex(swiper.activeIndex);
   };
 
